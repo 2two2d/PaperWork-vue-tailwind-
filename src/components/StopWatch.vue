@@ -1,5 +1,5 @@
 <template>
-  <div id="SecondComponent" class="h-[50px] w-[500px] bg-gradient-to-r from-yellow-200 to-green-200 rounded-xl text-center">
+  <div id="SecondComponent" class="h-[50px] w-[500px] bg-gray-300 rounded-xl text-center">
 
   </div>
 </template>
