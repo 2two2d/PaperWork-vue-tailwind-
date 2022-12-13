@@ -75,7 +75,7 @@
     color: rgb(70,70,70)
   }
   #nav{
-    box-shadow: rgba(255,255,255,.2) 5px 5px 5px, rgba(0,0,0,.1) -5px -5px 5px, inset rgba(255,255,255,.2) 5px 5px 5px, inset rgba(0,0,0,.1) -5px -5px 5px;
+    box-shadow: rgba(255,255,255,.3) 5px 5px 8px, rgba(0,0,0,.3) -5px -5px 8px;
   }
   .active{
     background-color: dodgerblue;
