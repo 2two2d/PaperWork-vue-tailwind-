@@ -1,12 +1,12 @@
 <template>
-  <div id="time" class="h-[50px] w-[500px] bg-gray-300 rounded-xl text-center">
+  <div class="h-[50px] w-[500px] bg-[rgba(225,225,240)] rounded-xl text-center">
     <p class="text-xl text-gray-700 mt-2">{{time_text}}</p>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'cardComp',
+    name: 'WorldTime',
     data(){
       return{
         time_text: '',
