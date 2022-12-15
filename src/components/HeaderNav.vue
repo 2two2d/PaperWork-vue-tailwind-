@@ -1,49 +1,77 @@
 <template>
   <div>
-    <div class="w-[500px] h-[74px] rounded-full flex justify-between items-center bg-[rgba(225,225,240)] border-[6px] border-[rgba(225,225,240)]" id="nav">
-      <div class="group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer relative right-2"
-           v-bind:class="{active:WorldTime_is_opened}" v-on:click="open_first_component">
-        <div id="img_wrapper">
-          <img src="@/assets/icons/img_time.png" alt="icon" class="w-[25px] h-[25px] group-hover:invert transition">
+    <div class="w-[500px] h-[74px] rounded-full flex justify-between items-center bg-[rgba(60,62,65)] border-[6px] border-[rgba(60,62,65)]" id="nav">
+      <router-link to="worldtime">
+        <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer relative right-2"
+             v-bind:class="{active:firstBtn_glow}" v-on:click="firstBtn_click">
+            <img src="@/assets/icons/img_time.png" alt="icon" class="w-[25px] h-[25px] invert transition">
+          <p class="text-gray-200 group-hover:text-[dodgerblue] transition">Время</p>
         </div>
-        <p class="group-hover:text-white transition">Время</p>
-      </div>
-      <div class="group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer"
-           v-bind:class="{active:StopWatch_is_opened}" v-on:click="open_second_component">
-        <div id="img_wrapper">
-          <img src="@/assets/icons/img_timer.svg" alt="icon" class="w-[25px] h-[25px] group-hover:invert transition">
+      </router-link>
+      <router-link to="stopwatch">
+        <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer"
+             v-bind:class="{active:secondBtn_glow}" v-on:click="secondBtn_click">
+            <img src="@/assets/icons/img_timer.svg" alt="icon" class="w-[25px] h-[25px] invert transition">
+          <p class="text-gray-200 group-hover:text-[dodgerblue] transition">Таймер</p>
         </div>
-        <p class="group-hover:text-white transition">Таймер</p>
-      </div>
-      <div class="group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer relative left-2"
-           v-bind:class="{active:Timer_is_opened}" v-on:click="open_third_component">
-        <div id="img_wrapper">
-          <img src="@/assets/icons/img_stopwatch.svg" alt="icon" class="w-[25px] h-[25px] group-hover:invert transition">
+      </router-link>
+      <router-link to="timer" v-on:click="thirdBtn_click">
+        <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer relative left-2"
+             v-bind:class="{active:thirdBtn_glow}">
+            <img src="@/assets/icons/img_stopwatch.svg" alt="icon" class="w-[25px] h-[25px] invert transition">
+          <p class="text-gray-200 group-hover:text-[dodgerblue] transition">Секундомер</p>
         </div>
-        <p class="group-hover:text-white transition">Секундомер</p>
-      </div>
+      </router-link>
     </div>
   </div>
-  <router-view></router-view>
 </template>
 
 <script>
 export default {
-  name: "HeaderNav"
+  name: "HeaderNav",
+  data() {
+    return{
+      firstBtn_glow: true,
+      secondBtn_glow: false,
+      thirdBtn_glow: false,
+    }
+  },
+  methods: {
+    firstBtn_click(){
+      this.firstBtn_glow = true
+      this.secondBtn_glow = false
+      this.thirdBtn_glow = false
+    },
+    secondBtn_click(){
+      this.firstBtn_glow = false
+      this.secondBtn_glow = true
+      this.thirdBtn_glow = false
+    },
+    thirdBtn_click(){
+      this.firstBtn_glow = false
+      this.secondBtn_glow = false
+      this.thirdBtn_glow = true
+    }
+  }
 }
 </script>
 
 <style scoped>
   p{
     font-weight: 600;
-    color: rgb(70,70,70)
+
   }
   #nav{
-    box-shadow: rgba(255,255,255,.5) -5px -5px 12px, rgba(0,0,0,.15) 5px 5px 12px;
+    box-shadow: rgba(255,255,255,.12) -5px -5px 12px, rgba(0,0,0,.2) 5px 5px 12px;
   }
+
+  .nav_btn:hover img{
+    filter: invert(50%) sepia(100%) hue-rotate(170deg) saturate(400%) brightness(85%);
+  }
+
   .active{
     background-color: dodgerblue;
-    box-shadow: dodgerblue 0 0 6px, dodgerblue 0 0 20px;
+    box-shadow: dodgerblue 0 0 6px, dodgerblue 0 0 15px;
     transition: 0.2s;
   }
   .active > p{

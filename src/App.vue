@@ -1,21 +1,20 @@
 <template>
   <div id="main" class="flex flex-col items-center justify-around w-full h-[200px] mt-6">
     <HeaderNav/>
-    <cardComp/>
-    <SecondComponent/>
-    <ThirdComponent/>
+
   </div>
+<!--  <router-view></router-view>-->
 </template>
 
 <script>
   import '@/assets/css/tailwind.css'
-  import cardComp from '@/components/WorldTime'
-  import SecondComponent from '@/components/StopWatch'
-  import ThirdComponent from '@/components/Timer'
   import HeaderNav from '@/components/HeaderNav'
+
   export default {
+    name: 'App',
+
     components: {
-      cardComp, SecondComponent, ThirdComponent, HeaderNav
+      HeaderNav
     },
     // data(){
     //   return {

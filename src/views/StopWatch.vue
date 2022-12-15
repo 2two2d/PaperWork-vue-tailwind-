@@ -5,9 +5,10 @@
 </template>
 
 <script>
-export default {
-  name: "ClockTimer"
-}
+
+  export default {
+    name: "StopWatch",
+  }
 </script>
 
 <style scoped>
