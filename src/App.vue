@@ -1,9 +1,8 @@
 <template>
-  <div id="main" class="flex flex-col items-center justify-around w-full h-[200px] mt-6">
+  <div id="main" class="flex flex-col items-center w-full">
     <HeaderNav/>
-
+    <router-view></router-view>
   </div>
-<!--  <router-view></router-view>-->
 </template>
 
 <script>

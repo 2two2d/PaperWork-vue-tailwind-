@@ -1,20 +1,22 @@
 <template>
-  <div class="h-[50px] w-[500px] bg-[rgba(225,225,240)] rounded-xl text-center">
-    <p class="text-xl text-gray-700 mt-2">{{time_text}}</p>
-  </div>
+  <watch-clock v-bind:seconds="seconds"></watch-clock>
 </template>
 
 <script>
+  import WatchClock from "@/components/WatchClock";
+
   export default {
     name: 'WorldTime',
     data(){
       return{
         time_text: '',
-        timestamp: '',
+        seconds: '',
 
       }
     },
-    components: {},
+    components: {
+      WatchClock,
+    },
     mounted() {
       this.get_time()
     },
@@ -26,6 +28,7 @@
            timeTouple.send()
            let time = new Date(timeTouple.responseText.split(',')[2].slice(12,-1))
            time.setSeconds(time.getSeconds()+1)
+           this.seconds = time.getSeconds()
            this.time_text = time
          }, 1000)
        },
