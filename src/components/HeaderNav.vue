@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="w-[500px] h-[74px] rounded-full flex justify-between items-center bg-[rgba(60,62,65)] border-[6px] border-[rgba(60,62,65)] mt-10 mb-10" id="nav">
+    <div class="w-[500px] h-[74px] rounded-full flex justify-between items-center bg-[rgba(60,62,65)] border-[6px] border-[rgba(60,62,65)] mt-10" id="nav">
       <router-link to="worldtime">
         <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer relative right-2"
              v-bind:class="{active:firstBtn_glow}" v-on:click="firstBtn_click">
@@ -62,7 +62,7 @@ export default {
 
   }
   #nav{
-    box-shadow: rgba(255,255,255,.1) -5px -5px 12px, rgba(0,0,0,.2) 5px 5px 12px;
+    box-shadow: rgba(255,255,255,.05) -5px -5px 12px, rgba(0,0,0,.2) 5px 5px 12px;
   }
 
   .nav_btn:hover img{
