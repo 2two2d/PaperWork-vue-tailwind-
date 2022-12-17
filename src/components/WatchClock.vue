@@ -5,13 +5,13 @@
     <div class="w-[240px] h-[240px] bg-[rgba(60,62,65)] absolute rounded-full circle"></div>
     <p class="text-gray-300 text-[30px] z-10">{{hours+':'+minutes+':'+seconds}}</p>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': seconds*6 + milliseconds/200 + 'deg'}">
-      <p :style="{rotate: -(seconds*6 + milliseconds/200) + 'deg'}" class="text-gray-200 transform -translate-x-[70px] z-10">Секунды</p>
+      <p :style="{rotate: -(seconds*6 + milliseconds/200) + 'deg'}" class="text-gray-200 transform -translate-x-[70px] z-20">Секунды</p>
     </div>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': minutes*6 + seconds/10 + milliseconds/10000 + 'deg'}">
       <p :style="{rotate: -(minutes*6 + seconds/10 + milliseconds/10000) + 'deg'}" class="text-gray-200 transform -translate-x-[65px] z-10">Минуты</p>
     </div>
-    <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': hours*30 + 'deg'}">
-      <p :style="{rotate: -(hours*30) + 'deg'}" class="text-gray-200 transform -translate-x-[40px] z-10">Часы</p>
+    <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': hours*30 + minutes/2 + 'deg'}">
+      <p :style="{rotate: -(hours*30 + minutes/2) + 'deg'}" class="text-gray-200 transform -translate-x-[40px] z-10">Часы</p>
     </div>
   </div>
 </template>

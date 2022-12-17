@@ -1,13 +1,13 @@
 <template>
   <div class="w-[400px] flex items-center justify-between">
-    <div class="w-[180px] h-[180px] rounded-3xl data_blocks"></div>
-    <div class="w-[180px] h-[180px] rounded-3xl data_blocks"></div>
+    <p></p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "DataBlock"
+  name: "DataBlock",
+  props: ['response_text']
 }
 </script>
 

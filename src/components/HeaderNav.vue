@@ -62,7 +62,7 @@ export default {
 
   }
   #nav{
-    box-shadow: rgba(255,255,255,.05) -5px -5px 12px, rgba(0,0,0,.2) 5px 5px 12px;
+    box-shadow: rgba(255,255,255,.05) -5px -5px 12px, rgba(0,0,0,.2) 5px 5px 20px;
   }
 
   .nav_btn:hover img{
