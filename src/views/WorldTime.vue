@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-around h-[700px]">
+  <div class="flex flex-col items-center justify-between h-[550px] mt-[40px]">
     <time-zone></time-zone>
     <watch-clock v-bind:milliseconds="milliseconds" v-bind:seconds="seconds" v-bind:minutes="minutes" v-bind:hours="hours"></watch-clock>
     <data-block v-bind:response_text="time_text"></data-block>
@@ -34,18 +34,15 @@
            let request = new XMLHttpRequest();
            request.open('GET', 'http://worldtimeapi.org/api/timezone/Europe/London', false)
            request.send()
+           console.log(request.responseText)
            let time = new Date(request.responseText.split(',')[2].slice(12,-1))
            this.show_time(time)
          }else{
-           this.show_time(Date())
+           let time = new Date()
+           this.show_time(time)
          }
        },
        show_time(time){
-         // let timeTouple = new XMLHttpRequest();
-         // timeTouple.open('GET', 'http://worldtimeapi.org/api/timezone/Europe/London', false)
-         // timeTouple.send()
-         // this.time_text = timeTouple.responseText
-         // console.log(Date())
          setInterval(()=>{
            time.setMilliseconds(time.getMilliseconds()+200)
            this.milliseconds = time.getMilliseconds()
