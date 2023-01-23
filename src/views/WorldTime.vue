@@ -29,14 +29,22 @@
       this.set_time()
     },
     methods: {
-       set_time(region){
-         if (region){
+       set_time(continent, city){
+         if (continent && city){
            let request = new XMLHttpRequest();
-           request.open('GET', 'http://worldtimeapi.org/api/timezone/Europe/London', false)
+           request.open('GET', `http://worldtimeapi.org/api/timezone/${continent}/${city}`, false)
            request.send()
-           console.log(request.responseText)
-           let time = new Date(request.responseText.split(',')[2].slice(12,-1))
-           this.show_time(time)
+
+           if(request.status == '200'){
+             console.log(2)
+             let time = new Date(request.responseText.split(',')[2].slice(12,-1))
+             this.show_time(time)
+           }else{
+             console.log(3)
+             let time = new Date()
+             this.show_time(time)
+           }
+
          }else{
            let time = new Date()
            this.show_time(time)
@@ -52,6 +60,9 @@
            this.time_text = time
          }, 200)
        },
+      test(){
+         console.log(123)
+      }
     },
   }
 </script>

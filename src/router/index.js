@@ -5,6 +5,7 @@ import WorldTime from "@/views/WorldTime";
 
 
 const routes = [
+    {path: '/', redirect: {name: 'worldtime'}},
     {path: '/worldtime', component: WorldTime, name: 'worldtime'},
     {path: '/stopwatch', component: StopWatch, name: 'stopwatch'},
     {path: '/timer', component: ClockTimer, name: 'timer'},
