@@ -1,18 +1,51 @@
 <template>
-  <div class="w-[400px] flex items-center justify-between">
-    <p></p>
+  <div class="w-[200px] h-[400px] flex items-center justify-between rounded-3xl">
+    <div v-if="!response_text">Регион не выбран<br/>время выставленно автоматически</div>
+    <div v-else class="h-full flex flex-col justify-around text-white">
+      <p>День недели: <span>{{day_of_week}}</span></p>
+      <hr>
+      <p>День года: <span>{{day_of_year}}</span></p>
+      <hr>
+      <p>Номер недели: <span>{{week_number}}</span></p>
+      <hr>
+      <p>UTF: <span>{{utc_offset}}</span></p>
+      <hr>
+      <p>Временая зона: <span>{{time_zone}}</span></p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "DataBlock",
-  props: ['response_text']
+  props: ['response_text'],
+  data(){
+    return{
+      day_of_week: '',
+      day_of_year: '',
+      week_number: '',
+      utc_offset: '',
+      time_zone: '',
+    }
+  },
+  watch: {
+    response_text: function (){
+      let raw_data_arr = this.response_text.split(',')
+      this.day_of_week = raw_data_arr[3].split(':')[1]
+      this.day_of_year = raw_data_arr[4].split(':')[1]
+      this.week_number = raw_data_arr[14].split(':')[1].slice(0,-1)
+      this.utc_offset = raw_data_arr[13].split(':')[1].slice(1)
+      this.time_zone = raw_data_arr[10].split(':')[1].slice(1,-1)
+    }
+  }
 }
 </script>
 
 <style scoped>
   .data_blocks{
-    box-shadow: rgba(255,255,255,.05) -5px -5px 12px, rgba(0,0,0,.2) 5px 5px 12px;
+    box-shadow: rgba(255,255,255,.05) -5px -5px 12px, rgba(0,0,0,.15) 5px 5px 12px;
+  }
+  span{
+    color: dodgerblue;
   }
 </style>

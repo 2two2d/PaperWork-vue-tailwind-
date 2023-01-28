@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="flex flex-col items-center w-full">
+  <div id="main" class="flex justify-around flex-col items-center w-full">
     <HeaderNav/>
     <router-view></router-view>
   </div>
