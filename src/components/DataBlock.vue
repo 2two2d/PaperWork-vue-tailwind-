@@ -1,6 +1,10 @@
 <template>
   <div class="w-[200px] h-[400px] flex items-center justify-between rounded-3xl">
-    <div v-if="!response_text">Регион не выбран<br/>время выставленно автоматически</div>
+    <div v-if="!response_text" class="h-[100px] flex flex-col justify-between">
+      <p class="text-orange-600 text-[20px]">Регион не выбран</p>
+      <hr>
+      <p class="text-white">Выставлено системное время</p>
+    </div>
     <div v-else class="h-full flex flex-col justify-around text-white">
       <p>День недели: <span>{{day_of_week}}</span></p>
       <hr>
@@ -47,5 +51,8 @@ export default {
   }
   span{
     color: dodgerblue;
+  }
+  hr{
+    border: 1px solid gray;
   }
 </style>

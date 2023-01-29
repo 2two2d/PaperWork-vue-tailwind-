@@ -54,6 +54,7 @@
     name: 'WorldTime',
     data(){
       return{
+        validation_error: '',
         time_zone: Date(),
         milliseconds: '00',
         seconds: '00',
@@ -73,26 +74,27 @@
     methods: {
        set_time(continent, city){
          if (continent && city){
-           let request = new XMLHttpRequest()
-           request.open('GET', `http://worldtimeapi.org/api/timezone/${continent}/${city}`, false)
+           if(this.city_validator(city)) {
+             let request = new XMLHttpRequest()
+             request.open('GET', `http://worldtimeapi.org/api/timezone/${continent}/${city}`, false)
 
-           request.send()
-           if(request.status == '200'){
-             let time = new Date(request.responseText.split(',')[2].slice(12,16),
-                                 request.responseText.split(',')[2].slice(17,19),
-                                 request.responseText.split(',')[2].slice(20,22),
-                                 request.responseText.split(',')[2].slice(23,25),
-                                 request.responseText.split(',')[2].slice(26,28),
-                                 request.responseText.split(',')[2].slice(29,31))
-             this.response_data = request.responseText
-             console.log(request.responseText)
-             request.abort()
-             this.show_time(time)
-           }else{
-             let time = new Date()
-             this.show_time(time)
+             request.send()
+             if (request.status == '200') {
+               let time = new Date(request.responseText.split(',')[2].slice(12, 16),
+                   request.responseText.split(',')[2].slice(17, 19),
+                   request.responseText.split(',')[2].slice(20, 22),
+                   request.responseText.split(',')[2].slice(23, 25),
+                   request.responseText.split(',')[2].slice(26, 28),
+                   request.responseText.split(',')[2].slice(29, 31))
+               this.response_data = request.responseText
+               console.log(request.responseText)
+               request.abort()
+               this.show_time(time)
+             } else {
+               let time = new Date()
+               this.show_time(time)
+             }
            }
-
          }else{
            let time = new Date()
            this.show_time(time)
@@ -109,8 +111,18 @@
            this.time_text = time
          }, 200)
        },
-      test(){
-         console.log(123)
+      city_validator(city){
+         if(city.lastIndexOf(' ') !== -1){
+
+           this.validation_error = 'Для названий городов, состоящих из двух слов, используйте символ "_"'
+           return false
+         }else if(city[0] !== city[0].toUpperCase()){
+
+           this.validation_error = 'Название города должно начинаться с большой буквы!'
+           return false
+         }else{
+           return true
+         }
       }
     },
   }
