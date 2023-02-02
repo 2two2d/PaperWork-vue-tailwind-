@@ -12,6 +12,7 @@
     </div>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': hours*30 + minutes/2 + 'deg'}">
       <p :style="{rotate: -(hours*30 + minutes/2) + 'deg'}" class="text-gray-200 transform -translate-x-[40px] z-10">Часы</p>
+      <p>убери этот тег позже</p>
     </div>
   </div>
 </template>
