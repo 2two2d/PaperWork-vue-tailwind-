@@ -15,33 +15,9 @@
     components: {
       HeaderNav
     },
-    // data(){
-    //   return {
-    //     'WorldTime_is_opened': true,
-    //     'StopWatch_is_opened': false,
-    //     'Timer_is_opened': false,
-    //   }
-    // },
-    // methods: {
-    //   open_first_component(){
-    //     this.WorldTime_is_opened = true
-    //     this.StopWatch_is_opened = false
-    //     this.Timer_is_opened = false
-    //   },
-    //   open_second_component(){
-    //     this.WorldTime_is_opened = false
-    //     this.StopWatch_is_opened = true
-    //     this.Timer_is_opened = false
-    //   },
-    //   open_third_component(){
-    //     this.WorldTime_is_opened = false
-    //     this.StopWatch_is_opened = false
-    //     this.Timer_is_opened = true
-    //   }
-    // }
   }
 </script>
 
-<style scoped>
+<style>
 
 </style>

@@ -1,30 +1,30 @@
 <template>
-  <div class="flex flex-col items-center justify-around h-[550px] mt-[20px]">
-    <div class="w-[700px] h-[80px] flex flex-wrap justify-between">
+  <div class="flex flex-col items-center justify-around h-[600px] mt-[20px]">
+    <div class="w-[700px] h-[120px] flex flex-wrap justify-between">
       <div class="w-[700px] flex justify-between">
         <div>
           <input type="radio" id="radio_asia" name="radio" class="peer hidden" value="Asia" checked v-model="continent">
-          <label for="radio_asia" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl hover:cursor-pointer transition">Азия</label>
+          <label for="radio_asia" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Азия</label>
         </div>
         <div>
           <input type="radio" id="radio_europe" name="radio" class="peer hidden" value="Europe" v-model="continent">
-          <label for="radio_europe" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl hover:cursor-pointer transition">Европа</label>
+          <label for="radio_europe" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Европа</label>
         </div>
         <div>
           <input type="radio" id="radio_south_america" name="radio" class="peer hidden" value="South_America" v-model="continent">
-          <label for="radio_south_america" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl hover:cursor-pointer transition">Южная Америка</label>
+          <label for="radio_south_america" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Южная Америка</label>
         </div>
         <div>
           <input type="radio" id="radio_north_america" name="radio" class="peer hidden" value="North_America" v-model="continent">
-          <label for="radio_north_america" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl hover:cursor-pointer transition">Северная Америка</label>
+          <label for="radio_north_america" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Северная Америка</label>
         </div>
         <div>
           <input type="radio" id="radio_australia" name="radio" class="peer hidden" value="Australia" v-model="continent">
-          <label for="radio_australia" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl hover:cursor-pointer transition">Австралия</label>
+          <label for="radio_australia" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Австралия</label>
         </div>
         <div>
           <input type="radio" id="radio_africa" name="radio" class="peer hidden" value="Africa" v-model="continent">
-          <label for="radio_africa" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl hover:cursor-pointer transition">Африка</label>
+          <label for="radio_africa" class="text-gray-400 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Африка</label>
         </div>
       </div>
       <div class="w-[200px]">
@@ -66,7 +66,7 @@
       }
     },
     components: {
-      WatchClock, DataBlock,
+      WatchClock, DataBlock
     },
     mounted() {
       this.set_time()

@@ -23,12 +23,19 @@
         </div>
       </router-link>
     </div>
+    <settings-block class="absolute left-[1350px] top-[10px]"></settings-block>
   </div>
 </template>
 
 <script>
+
+import SettingsBlock from "@/components/SettingsBlock";
+
 export default {
   name: "HeaderNav",
+  components: {
+    SettingsBlock
+  },
   data() {
     return{
       firstBtn_glow: true,
