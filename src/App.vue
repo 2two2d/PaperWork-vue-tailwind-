@@ -15,9 +15,16 @@
     components: {
       HeaderNav
     },
+    computed: {
+      BG_COLOR: function(){
+        return this.$store.state.BG_COLOR
+      }
+    }
   }
 </script>
 
 <style>
-
+  body{
+    background-color: v-bind(BG_COLOR);
+  }
 </style>
