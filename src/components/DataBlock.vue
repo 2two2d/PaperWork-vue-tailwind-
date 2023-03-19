@@ -6,15 +6,15 @@
       <p class="text-white">Выставлено системное время</p>
     </div>
     <div v-else class="h-full flex flex-col justify-around text-white">
-      <p>День недели: <span>{{day_of_week}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">День недели: <span>{{day_of_week}}</span></p>
       <hr>
-      <p>День года: <span>{{day_of_year}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">День года: <span>{{day_of_year}}</span></p>
       <hr>
-      <p>Номер недели: <span>{{week_number}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">Номер недели: <span>{{week_number}}</span></p>
       <hr>
-      <p>UTF: <span>{{utc_offset}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">UTF: <span>{{utc_offset}}</span></p>
       <hr>
-      <p>Временая зона: <span>{{time_zone}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">Временая зона: <span>{{time_zone}}</span></p>
     </div>
   </div>
 </template>
@@ -51,6 +51,7 @@ export default {
   }
   span{
     color: dodgerblue;
+    font-weight: 600;
   }
   hr{
     border: 1px solid gray;

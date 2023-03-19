@@ -1,17 +1,17 @@
 <template>
-  <div class="w-[400px] h-[400px] bg-[rgba(60,62,65)] rounded-full flex items-center justify-center" id="clock">
-    <div class="w-[360px] h-[360px] bg-[rgba(60,63,65)] absolute rounded-full circle"></div>
-    <div class="w-[300px] h-[300px] bg-[rgba(60,62,65)] absolute rounded-full circle"></div>
-    <div class="w-[240px] h-[240px] bg-[rgba(60,62,65)] absolute rounded-full circle"></div>
-    <p class="text-gray-300 text-[30px] z-10">{{hours+':'+minutes+':'+seconds}}</p>
+  <div :style="{backgroundColor: $store.state.BG_COLOR}" class="w-[400px] h-[400px] rounded-full flex items-center justify-center" id="clock">
+    <div :style="{backgroundColor: $store.state.BG_COLOR}" class="w-[360px] h-[360px] absolute rounded-full circle"></div>
+    <div :style="{backgroundColor: $store.state.BG_COLOR}" class="w-[300px] h-[300px] absolute rounded-full circle"></div>
+    <div :style="{backgroundColor: $store.state.BG_COLOR}" class="w-[240px] h-[240px] absolute rounded-full circle"></div>
+    <p :style="{color: $store.state.TEXT_COLOR}" class="text-gray-300 text-[30px] z-10">{{hours+':'+minutes+':'+seconds}}</p>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': seconds*6 + milliseconds/200 + 'deg'}">
-      <p :style="{rotate: -(seconds*6 + milliseconds/200) + 'deg'}" class="text-gray-200 transform -translate-x-[70px] z-20">Секунды</p>
+      <p :style="{rotate: -(seconds*6 + milliseconds/200) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[70px] z-20">Секунды</p>
     </div>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': minutes*6 + seconds/10 + milliseconds/10000 + 'deg'}">
-      <p :style="{rotate: -(minutes*6 + seconds/10 + milliseconds/10000) + 'deg'}" class="text-gray-200 transform -translate-x-[65px] z-10">Минуты</p>
+      <p :style="{rotate: -(minutes*6 + seconds/10 + milliseconds/10000) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[65px] z-10">Минуты</p>
     </div>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': hours*30 + minutes/2 + 'deg'}">
-      <p :style="{rotate: -(hours*30 + minutes/2) + 'deg'}" class="text-gray-200 transform -translate-x-[40px] z-10">Часы</p>
+      <p :style="{rotate: -(hours*30 + minutes/2) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[40px] z-10">Часы</p>
     </div>
   </div>
 </template>

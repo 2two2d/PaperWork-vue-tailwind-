@@ -1,15 +1,12 @@
 <template>
   <div class="w-[40px] h-[40px]">
-
-      <img @click="show = ! show" :class="{spin: !show, spin_reverse: show}" id="img_settings" src="@/assets/icons/img_settings.png" alt="settings" title="settings">
-
-
+    <img @click="show = ! show" :class="{spin: !show, spin_reverse: show}" id="img_settings" src="@/assets/icons/img_settings.png" alt="settings" title="settings">
     <transition name="settings_block">
-      <div v-if="show" class="w-[120px] h-[75px] rounded-[10px] flex justify-around" id="settings_block">
+      <div v-if="show" :style="{backgroundColor: $store.state.BG_COLOR}" class="w-[120px] h-[75px] rounded-[10px] flex justify-around" id="settings_block">
         <div @click="changeMode" class="bg-transparent border-2 border-[dodgerblue] w-[60px] h-[22px] rounded-[12px] mt-10">
           <div :class="{lightMode: !dark, darkMode: dark}" class="rounded-full bg-[dodgerblue] w-[19px] h-[19px]"></div>
-          <p v-if="dark" class="text-white text-[12px] relative left-[22px] bottom-[18px]">dark</p>
-          <p v-else class="text-white text-[12px] relative left-[8px] bottom-[18px]">light</p>
+          <p v-if="dark" :style="{color: $store.state.TEXT_COLOR}" class="text-[12px] relative left-[22px] bottom-[18px]">dark</p>
+          <p v-else :style="{color: $store.state.TEXT_COLOR}" class="text-[12px] relative left-[8px] bottom-[18px]">light</p>
         </div>
         <div class="bg-[dodgerblue] w-[20px] h-[20px] rounded-[10px] mt-10">
 
@@ -32,7 +29,12 @@ export default {
   methods: {
     changeMode(){
       this.dark = ! this.dark
-      this.$store.state.DARK_MODE = !this.$store.state.DARK_MODE
+      if(this.dark){
+        localStorage.mode = 'dark'
+      }else{
+        localStorage.mode = 'light'
+      }
+      this.$store.commit('setMode')
     }
   }
 }
@@ -105,12 +107,12 @@ export default {
 
   .lightMode{
     transform: translateX(40px);
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
   }
 
   .darkMode{
     transform: translateX(-1px);
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
   }
 
 </style>

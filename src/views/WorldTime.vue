@@ -29,7 +29,7 @@
       </div>
       <div class="w-[200px]">
         <img src="@/assets/icons/img_search.png" alt="img" width="22" height="22" class="absolute ml-[170px] mt-[3px] invert-[0.8] hover:cursor-pointer" id="search_img">
-        <input v-model="city" v-on:keydown.enter="set_time" type="text" class="w-[200px] h-[30px] rounded-full border-2 border-gray-400 bg-[rgba(60,62,65)] outline-0 text-white text-center focus:placeholder-[dodgerblue]" id="search_input" placeholder="Город">
+        <input v-model="city" v-on:keydown.enter="set_time" type="text" v-on:focus="document.getElementById('search_input').style.color = focusDodgerBlue" :style="[{backgroundColor: $store.state.BG_COLOR, color: $store.state.TEXT_COLOR,}, focusDodgerBlue]" class="w-[200px] h-[30px] rounded-full border-2 border-gray-400 outline-0 text-white text-center focus:placeholder-[dodgerblue]" id="search_input" placeholder="Город">
       </div>
       <div v-on:click="set_time(this.continent, this.city)" class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
         <p class="text-center text-white select-none">Установить регион</p>
@@ -70,6 +70,13 @@
     },
     mounted() {
       this.set_time()
+    },
+    computed: {
+      focusDodgerBlue: function (){
+        return {
+          '--color-focused': 'dodgerblue'
+        }
+      }
     },
     methods: {
        set_time(continent, city){

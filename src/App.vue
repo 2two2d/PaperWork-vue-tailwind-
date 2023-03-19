@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="flex justify-around flex-col items-center w-full">
+  <div :style="{backgroundColor: this.$store.state.BG_COLOR}" id="main" class="flex flex-col items-center w-full h-[100vh]">
     <HeaderNav/>
     <router-view></router-view>
   </div>
@@ -15,16 +15,9 @@
     components: {
       HeaderNav
     },
-    computed: {
-      BG_COLOR: function(){
-        return this.$store.state.BG_COLOR
-      }
-    }
   }
 </script>
 
 <style>
-  body{
-    background-color: v-bind(BG_COLOR);
-  }
+
 </style>
