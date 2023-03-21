@@ -3,13 +3,13 @@
     <img @click="show = ! show" :class="{spin: !show, spin_reverse: show}" id="img_settings" src="@/assets/icons/img_settings.png" alt="settings" title="settings">
     <transition name="settings_block">
       <div v-if="show" :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.SMALL_SHADOWS]" class="w-[120px] h-[75px] rounded-[10px] flex justify-around" id="settings_block">
-        <div @click="changeMode" class="bg-transparent border-[2px] border-[dodgerblue] w-[60px] h-[22px] rounded-[12px] mt-10">
+        <div @click="changeMode" class="bg-transparent border-[2px] border-[dodgerblue] w-[60px] h-[22px] rounded-[12px] mt-10 cursor-pointer">
           <div :class="{lightMode: !dark, darkMode: dark}" class="rounded-full bg-[dodgerblue] w-[19px] h-[19px]"></div>
           <p v-if="dark" :style="{color: $store.state.TEXT_COLOR}" class="text-[12px] relative left-[22px] bottom-[18px]">light</p>
           <p v-else :style="{color: $store.state.TEXT_COLOR}" class="text-[12px] relative left-[8px] bottom-[18px]">dark</p>
         </div>
-        <img @click="changeSound" v-if="sound" src="@/assets/icons/img_sound.png" alt="sound" class="w-[26px] h-[26px] mt-[37px]">
-        <img @click="changeSound" v-else src="@/assets/icons/img_no_sound.png" alt="sound" class="w-[26px] h-[26px] mt-[37px] filter hue-rotate-[160deg]">
+        <img @click="changeSound" v-if="sound" src="@/assets/icons/img_sound.png" alt="sound" class="w-[26px] h-[26px] mt-[37px] cursor-pointer">
+        <img @click="changeSound" v-else src="@/assets/icons/img_no_sound.png" alt="sound" class="w-[26px] h-[26px] mt-[37px] filter hue-rotate-[160deg] cursor-pointer">
       </div>
     </transition>
 

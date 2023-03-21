@@ -11,14 +11,14 @@
       <router-link to="timer">
         <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer"
              v-bind:class="{active:secondBtn_glow}" v-on:click="secondBtn_click">
-            <img src="@/assets/icons/img_timer.svg" alt="icon" class="w-[25px] h-[25px] invert-[50%] transition">
+            <img src="@/assets/icons/img_stopwatch.svg" alt="icon" class="w-[25px] h-[25px] invert-[50%] transition">
           <p class="text-gray-500 group-hover:text-white transition">Таймер</p>
         </div>
       </router-link>
       <router-link to="stopwatch" v-on:click="thirdBtn_click">
         <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer relative left-2"
              v-bind:class="{active:thirdBtn_glow}">
-            <img src="@/assets/icons/img_stopwatch.svg" alt="icon" class="w-[25px] h-[25px] invert-[50%] transition">
+            <img src="@/assets/icons/img_timer.svg" alt="icon" class="w-[25px] h-[25px] invert-[50%] transition">
           <p class="text-gray-500 group-hover:text-white transition">Секундомер</p>
         </div>
       </router-link>
