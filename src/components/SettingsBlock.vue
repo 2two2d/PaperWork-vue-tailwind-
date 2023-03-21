@@ -8,9 +8,8 @@
           <p v-if="dark" :style="{color: $store.state.TEXT_COLOR}" class="text-[12px] relative left-[22px] bottom-[18px]">light</p>
           <p v-else :style="{color: $store.state.TEXT_COLOR}" class="text-[12px] relative left-[8px] bottom-[18px]">dark</p>
         </div>
-        <div class="bg-[dodgerblue] w-[20px] h-[20px] rounded-[10px] mt-10">
-
-        </div>
+        <img @click="changeSound" v-if="sound" src="@/assets/icons/img_sound.png" alt="sound" class="w-[26px] h-[26px] mt-[37px]">
+        <img @click="changeSound" v-else src="@/assets/icons/img_no_sound.png" alt="sound" class="w-[26px] h-[26px] mt-[37px] filter hue-rotate-[160deg]">
       </div>
     </transition>
 
@@ -24,6 +23,7 @@ export default {
     return {
       show: false,
       dark: true,
+      sound: true,
     }
   },
   methods: {
@@ -35,15 +35,23 @@ export default {
         localStorage.mode = 'light'
       }
       this.$store.commit('setMode')
+    },
+
+    changeSound(){
+      this.sound = ! this.sound
+      if(this.sound){
+        localStorage.sound = 'sound'
+      }else{
+        localStorage.sound = 'noSound'
+      }
+      this.$store.commit('setSound')
     }
   },
   mounted() {
-    if(localStorage.mode === 'dark'){
-      this.dark = true
-    }else{
-      this.dark = false
-    }
+    this.dark = localStorage.mode === 'dark'
+    this.sound = localStorage.sound === 'sound'
     this.$store.commit("setMode")
+    this.$store.commit('setSound')
   }
 }
 </script>

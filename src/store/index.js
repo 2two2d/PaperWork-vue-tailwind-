@@ -3,17 +3,19 @@ import {createStore} from 'vuex'
 export const store = createStore({
     state: {
         MODE: localStorage.mode,
+        SOUND: localStorage.sound,
         BG_COLOR: 'rgba(60,62,65)',
+        BG_UP: 'linear-gradient(145deg, #404246, #36383b)',
         TEXT_COLOR: 'white',
         LINK_COLOR: 'lightgray',
         BIG_SHADOWS: {
-            'box-shadow': 'rgba(255,255,255,.05) -10px -10px 25px, rgba(0,0,0,.15) 10px 10px 25px'
+            'box-shadow': '#44484b -10px -10px 50px, #313234 10px 10px 50px'
         },
         BIG_INSET_SHADOWS: {
-            'box-shadow': 'inset rgba(255,255,255,.05) -10px -10px 25px, inset rgba(0,0,0,.15) 10px 10px 25px'
+            'box-shadow': 'inset #44484b -10px -10px 25px, inset #313234 10px 10px 25px'
         },
         SMALL_SHADOWS: {
-            'box-shadow': 'rgba(255,255,255,.05) -5px -5px 12px, rgba(0,0,0,.2) 5px 5px 20px'
+            'box-shadow': '#44484b -5px -5px 12px, #3132345px 5px 20px'
         }
     },
     getters: {
@@ -21,9 +23,10 @@ export const store = createStore({
     },
     mutations: {
         setMode(state) {
-            if(state.MODE == 'dark'){
+            if(state.MODE === 'dark'){
                 state.MODE = 'light'
                 state.BG_COLOR = '#c3c3c1'
+                state.BG_UP = 'linear-gradient(145deg, #d1d1cf, #b0b0ae)'
                 state.TEXT_COLOR = 'dimgray'
                 state.LINK_COLOR = 'dimgray'
                 state.BIG_SHADOWS = {
@@ -33,23 +36,31 @@ export const store = createStore({
                     'box-shadow': 'inset 27px 27px 20px #b3b3b2, inset -27px -27px 20px #d3d3d0'
                 }
                 state.SMALL_SHADOWS = {
-                    'box-shadow': '10px 10px 20px #a6a6a4, -10px -10px 20px #d3d3d0'
+                    'box-shadow': '10px 10px 20px #949494, -10px -10px 20px #dcdcda'
                 }
             }else{
                 state.MODE = 'dark'
                 state.BG_COLOR = 'rgba(60,62,65)'
+                state.BG_UP = 'linear-gradient(145deg, #404246, #36383b)'
                 state.TEXT_COLOR = 'white'
                 state.LINK_COLOR = 'lightgray'
                 state.BIG_SHADOWS = {
-                    'box-shadow': 'rgba(255,255,255,.05) -10px -10px 25px, rgba(0,0,0,.15) 10px 10px 25px'
+                    'box-shadow': '#44484b -10px -10px 50px, #313234 10px 10px 50px'
                 }
                 state.BIG_INSET_SHADOWS = {
-                    'box-shadow': 'inset rgba(255,255,255,.05) -10px -10px 25px, inset rgba(0,0,0,.15) 10px 10px 25px'
+                    'box-shadow': 'inset #44484b -10px -10px 25px, inset #313234 10px 10px 25px'
                 }
                 state.SMALL_SHADOWS = {
-                    'box-shadow': 'rgba(255,255,255,.05) -5px -5px 12px, rgba(0,0,0,.1) 5px 5px 20px'
+                    'box-shadow': '#44484b -5px -5px 12px, #313234 5px 5px 20px'
                 }
             }
+        },
+        setSound(state){
+          if(state.SOUND === 'sound'){
+              state.sound = 'noSound'
+          }else{
+              state.sound = 'sound'
+          }
         }
     },
     actions: {

@@ -1,6 +1,6 @@
 <template>
-  <div class="mb-[-40px]">
-    <div :style="[{backgroundColor: $store.state.BG_COLOR, borderColor: $store.state.BG_COLOR}, $store.state.SMALL_SHADOWS]" class="w-[700px] h-[74px] rounded-full flex justify-between items-center border-[6px] mt-5" id="nav">
+  <div class="mb-[-40px] relative z-10">
+    <div :style="[{backgroundColor: $store.state.BG_UP, borderColor: $store.state.BG_COLOR}, $store.state.SMALL_SHADOWS]" class="w-[700px] h-[74px] rounded-full flex justify-between items-center border-[6px] mt-5" id="nav">
       <router-link to="worldtime">
         <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer relative right-2"
              v-bind:class="{active:firstBtn_glow}" v-on:click="firstBtn_click">
@@ -8,14 +8,14 @@
           <p class="text-gray-500 group-hover:text-white transition">Время</p>
         </div>
       </router-link>
-      <router-link to="stopwatch">
+      <router-link to="timer">
         <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer"
              v-bind:class="{active:secondBtn_glow}" v-on:click="secondBtn_click">
             <img src="@/assets/icons/img_timer.svg" alt="icon" class="w-[25px] h-[25px] invert-[50%] transition">
           <p class="text-gray-500 group-hover:text-white transition">Таймер</p>
         </div>
       </router-link>
-      <router-link to="timer" v-on:click="thirdBtn_click">
+      <router-link to="stopwatch" v-on:click="thirdBtn_click">
         <div class="nav_btn group w-[135px] h-[74px] rounded-[40px] flex flex-col items-center justify-center hover:cursor-pointer relative left-2"
              v-bind:class="{active:thirdBtn_glow}">
             <img src="@/assets/icons/img_stopwatch.svg" alt="icon" class="w-[25px] h-[25px] invert-[50%] transition">
@@ -66,7 +66,6 @@ export default {
 <style scoped>
   p{
     font-weight: 600;
-
   }
 
   .nav_btn:hover img{
@@ -74,9 +73,7 @@ export default {
   }
 
   .active{
-    background-color: dodgerblue;
-    box-shadow: dodgerblue 0 0 6px, dodgerblue 0 0 15px;
-    transition: 0.2s;
+    background: linear-gradient(145deg, #209fff, #1b82e6);
   }
   .active > p{
     color: white;

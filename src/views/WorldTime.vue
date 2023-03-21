@@ -31,11 +31,11 @@
         <img src="@/assets/icons/img_search.png" alt="img" width="22" height="22" class="absolute ml-[170px] mt-[3px] invert-[0.8] hover:cursor-pointer" id="search_img">
         <input v-model="city" v-on:keydown.enter="set_time" type="text" :style="{backgroundColor: $store.state.BG_COLOR}" class="w-[200px] h-[30px] rounded-full border-2 border-gray-400 outline-0 text-[dodgerblue] text-center focus:placeholder-[dodgerblue]" id="search_input" placeholder="Город">
       </div>
-      <div v-on:click="set_time(this.continent, this.city)" class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
+      <div @click="set_time(this.continent, this.city)" :style="$store.state.SMALL_SHADOWS" class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
         <p class="text-center text-white select-none">Установить регион</p>
       </div>
-      <div class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
-        <p class="text-center text-white select-none">Выбрать местное время</p>
+      <div @click="set_time" :style="$store.state.SMALL_SHADOWS" class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
+        <p class="text-center text-white select-none">Системное время</p>
       </div>
     </div>
     <div class="flex h-[400px] w-[700px] justify-between">
@@ -104,6 +104,9 @@
            }
          }else{
            let time = new Date()
+           if(this.response_data){
+             location.reload()
+           }
            this.show_time(time)
          }
        },
@@ -137,21 +140,10 @@
 
 <style scoped>
   .btn{
-    box-shadow: dodgerblue 0 0 6px, dodgerblue 0 0 15px;
+    background: linear-gradient(145deg, #209fff, #1b82e6);
   }
-
   .btn:hover{
-    box-shadow: none;
-  }
-
-  .btn:active{
-    border: 2px solid dodgerblue;
-    background: transparent;
-  }
-
-  .btn:active p{
-    color: dodgerblue;
-    margin-bottom: 2px;
+    background: linear-gradient(145deg, #1b82e6, #209aff);
   }
 
   input:hover{
