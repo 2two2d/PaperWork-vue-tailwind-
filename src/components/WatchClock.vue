@@ -44,4 +44,12 @@ export default {
     background-color: transparent;
     border: 4px solid dodgerblue;
   }
+  .pointer:nth-child(6){
+    translate: 0 -135px;
+    transform-origin: 15px 150px;
+  }
+  .pointer:nth-child(7){
+    translate: 0 -105px;
+    transform-origin: 15px 120px;
+  }
 </style>

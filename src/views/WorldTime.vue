@@ -34,12 +34,12 @@
       <div @click="set_time" :style="$store.state.SMALL_SHADOWS" class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
         <p class="text-center text-white select-none">Установить регион</p>
       </div>
-      <div @click="city = ''; set_time()" :style="$store.state.SMALL_SHADOWS" class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
+      <div @click="set_default" :style="$store.state.SMALL_SHADOWS" class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
         <p class="text-center text-white select-none">Системное время</p>
       </div>
     </div>
     <div class="flex h-[400px] w-[700px] justify-between">
-      <data-block v-bind:response_text="response_data"></data-block>
+      <data-block v-bind:response_text="response_data" v-bind:validation_error="validation_error"></data-block>
       <watch-clock v-bind:milliseconds="milliseconds" v-bind:seconds="seconds" v-bind:minutes="minutes" v-bind:hours="hours"></watch-clock>
     </div>
   </div>
@@ -48,7 +48,6 @@
 <script>
   import WatchClock from "@/components/WatchClock";
   import DataBlock from "@/components/DataBlock";
-  let interval;
 
   export default {
     name: 'WorldTime',
@@ -61,62 +60,56 @@
         minutes: '00',
         hours: '00',
         continent: 'Asia',
-        city: 'Tomsk',
+        city: localStorage.city,
         response_data: '',
+        interval: '',
       }
     },
     components: {
       WatchClock, DataBlock
     },
-    mounted() {
-      this.city = localStorage.city
-      this.set_time()
-    },
-    computed: {
-      focusDodgerBlue: function (){
-        return {
-          '--color-focused': 'dodgerblue'
-        }
-      }
-    },
-    methods: {
-       set_continent_in_storage(continent){
-         localStorage.continent = continent
-       },
-       set_time(){
-         document.getElementById(localStorage.continent).click()
-         if (this.continent && this.city){
-           if(this.city_validator(this.city)) {
-             let request = new XMLHttpRequest()
-             request.open('GET', `http://worldtimeapi.org/api/timezone/${this.continent}/${this.city}`, false)
 
-             request.send()
-             if (request.status == '200') {
-               let time = new Date(request.responseText.split(',')[2].slice(12, 16),
-                   request.responseText.split(',')[2].slice(17, 19),
-                   request.responseText.split(',')[2].slice(20, 22),
-                   request.responseText.split(',')[2].slice(23, 25),
-                   request.responseText.split(',')[2].slice(26, 28),
-                   request.responseText.split(',')[2].slice(29, 31))
-               this.response_data = request.responseText
-               request.abort()
-               this.show_time(time)
-             } else {
-               let time = new Date()
-               this.show_time(time)
-             }
-           }
-         }else{
-           let time = new Date()
-           if(this.response_data){
-             location.reload()
-           }
-           this.show_time(time)
-         }
-       },
-       show_time(time){
-         clearInterval(interval)
-         interval = setInterval(()=>{
+    methods: {
+      set_continent_in_storage(continent){
+        localStorage.continent = continent
+      },
+      set_time(){
+        document.getElementById(localStorage.continent).click()
+          if(this.city_validator(this.city)) {
+            let request = new XMLHttpRequest()
+            clearInterval(this.interval)
+            request.open('GET', `http://worldtimeapi.org/api/timezone/${this.continent}/${this.city}`, false)
+            request.send()
+            if (request.status == '200') {
+              let time = new Date(request.responseText.split(',')[2].slice(12, 16),
+                  request.responseText.split(',')[2].slice(17, 19),
+                  request.responseText.split(',')[2].slice(20, 22),
+                  request.responseText.split(',')[2].slice(23, 25),
+                  request.responseText.split(',')[2].slice(26, 28),
+                  request.responseText.split(',')[2].slice(29, 31))
+              this.response_data = request.responseText
+              request.abort()
+              this.validation_error = ''
+              this.show_time(time)
+            } else {
+              request.abort()
+              this.validation_error = 'Такой город не найден!'
+              this.response_data = ''
+              let time = new Date()
+              this.show_time(time)
+            }
+          }
+        },
+      set_default(){
+        let time = new Date()
+        clearInterval(this.interval)
+        this.response_data = ''
+        this.validation_error = 'Регион не выбран!'
+        this.show_time(time)
+      },
+      show_time(time){
+        console.log(1)
+       this.interval = setInterval(()=>{
            time.setMilliseconds(time.getMilliseconds()+200)
            this.milliseconds = time.getMilliseconds()
            String(time.getSeconds()).length == 1 ? this.seconds = '0' + time.getSeconds() : this.seconds = time.getSeconds()
@@ -124,7 +117,7 @@
            String(time.getHours()).length == 1 ? this.hours = '0' + time.getHours() : this.hours = time.getHours()
            this.time_text = time
          }, 200)
-       },
+      },
       city_validator(city){
          if(city.lastIndexOf(' ') !== -1){
            this.validation_error = 'Для названий городов, состоящих из двух слов, используйте символ "_"'
