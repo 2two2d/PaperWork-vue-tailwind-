@@ -1,12 +1,13 @@
 <template>
   <div class="flex flex-col items-center justify-around h-[600px] ">
-    <watch-clock v-bind:milliseconds="milliseconds" v-bind:seconds="Math.floor(seconds)" v-bind:minutes="Math.floor(minutes)" v-bind:checked="true"></watch-clock>
+    <stopwatch-clock v-bind:milliseconds="milliseconds" v-bind:seconds="Math.floor(seconds)" v-bind:minutes="Math.floor(minutes)" v-bind:checked="true"></stopwatch-clock>
     <div class="w-[600px] h-[50px] flex justify-between">
-      <div :style="$store.state.SMALL_SHADOWS" class="w-[150px] h-[60px] rounded-full btn flex items-center justify-around cursor-pointer">
+      <div @click="restart" :style="$store.state.SMALL_SHADOWS" class="w-[150px] h-[60px] rounded-full btn flex items-center justify-around cursor-pointer">
         <img src="@/assets/icons/img_restart.png" alt="img" width="30" height="30">
       </div>
-      <div @click="start" :style="$store.state.SMALL_SHADOWS" class="w-[150px] h-[60px] rounded-full btn flex items-center justify-around cursor-pointer">
-        <img src="@/assets/icons/img_play.png" alt="img" width="40" height="40">
+      <div @click="play=!play; startStop()" :style="$store.state.SMALL_SHADOWS" class="w-[150px] h-[60px] rounded-full btn flex items-center justify-around cursor-pointer">
+        <img v-show="!play" src="@/assets/icons/img_play.png" alt="img" width="40" height="40">
+        <img v-show="play" src="@/assets/icons/img_pause.png" alt="img" width="28" height="28">
       </div>
       <div :style="$store.state.SMALL_SHADOWS" class="w-[150px] h-[60px] rounded-full btn flex items-center justify-around cursor-pointer">
         <img src="@/assets/icons/img_timer.svg" alt="img" width="30" height="30" class="filter invert">
@@ -17,30 +18,56 @@
 </template>
 
 <script>
-  import WatchClock from "@/components/WatchClock";
+  import StopwatchClock from "@/components/StopwatchClock";
 
   export default {
     name: "StopWatch",
-    components: {WatchClock},
+    components: {StopwatchClock},
     data(){
       return{
-        milliseconds: '00',
-        seconds: '00',
-        minutes: '00',
+        play: false,
+        milliseconds: 0,
+        seconds: 0,
+        minutes: 0,
+        interval: 0,
       }
     },
     methods: {
-      start(){
+      startStop(){
+        if(this.play === true){
+          this.interval = setInterval(()=>{
+            this.milliseconds += 10
+            if(this.milliseconds === 1000){
+              this.milliseconds = 0
+              this.seconds += 1
+              this.minutes += 1/60
+            }
+            if(this.seconds === 60){
+              this.seconds = 0
+            }
+          }, 10)
+        }else{
+          clearInterval(this.interval)
+        }
+      },
+
+      restart(){
+        clearInterval(this.interval)
         this.milliseconds = 0
-        this.seconds = 0
         this.minutes = 0
-        let interval = setInterval(()=>{
-          this.milliseconds += 100
-          this.seconds += 1/10
-          this.minutes += 1/600
-        }, 100)
-        console.log(interval)
+        this.seconds = 0
+        this.play ? this.play = false : ''
       }
+    },
+    beforeMount(){
+      this.milliseconds = Number(localStorage.milliseconds)
+      this.seconds = Number(localStorage.seconds)
+      this.minutes = Number(localStorage.minutes)
+    },
+    beforeUnmount() {
+      localStorage.milliseconds = this.milliseconds
+      localStorage.seconds = this.seconds
+      localStorage.minutes = this.minutes
     }
   }
 </script>

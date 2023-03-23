@@ -48,17 +48,25 @@ export default {
       this.firstBtn_glow = true
       this.secondBtn_glow = false
       this.thirdBtn_glow = false
+      localStorage.page = 'worldTime'
     },
     secondBtn_click(){
       this.firstBtn_glow = false
       this.secondBtn_glow = true
       this.thirdBtn_glow = false
+      localStorage.page = 'timer'
     },
     thirdBtn_click(){
       this.firstBtn_glow = false
       this.secondBtn_glow = false
       this.thirdBtn_glow = true
+      localStorage.page = 'stopWatch'
     }
+  },
+  mounted(){
+    if (!localStorage.page) localStorage.page = 'worldTime'
+    if (localStorage.page === 'timer') this.secondBtn_click()
+    if (localStorage.page === 'stopWatch') this.thirdBtn_click()
   }
 }
 </script>
