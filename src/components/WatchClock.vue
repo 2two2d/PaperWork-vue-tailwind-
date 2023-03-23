@@ -2,33 +2,18 @@
   <div :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_SHADOWS]" class="w-[400px] h-[400px] rounded-full flex items-center justify-center" id="clock">
     <div :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_INSET_SHADOWS]" class="w-[360px] h-[360px] absolute rounded-full circle"></div>
     <div :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_INSET_SHADOWS]" class="w-[300px] h-[300px] absolute rounded-full circle"></div>
-    <div v-show="!checked" :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_INSET_SHADOWS]" class="w-[240px] h-[240px] absolute rounded-full circle"></div>
-    <div v-if="checked" class="z-10 flex flex-col items-center justify-between">
-      <div class="w-[60px] h-[60px] ml-[45px] mb-[30px]">
-        <div v-for="i in [5,10,15,20,25,30]" v-bind:key="i" :style="{rotate: i*12-90 + 'deg', color: $store.state.TEXT_COLOR}" class="w-[20px] h-[20px] absolute center translate-x-[35px] flex items-center">
-          <p :style="{rotate: -i*12+90 + 'deg'}" class="block w-[20px] h-[20px] text-center">{{i}}</p>
-        </div>
-        <div :style="{rotate: -90 + minutes*12 + seconds/5 + 'deg'}" class="w-[20px] h-[5px] rounded-full bg-[dodgerblue] relative top-[10px] translate-x-[10px]"></div>
-      </div>
-      <p :style="{color: $store.state.TEXT_COLOR}" class="text-gray-300 text-[30px]">
-        {{(String(minutes).length === 1 ? '0' + minutes : minutes)
-          +':'+(String(seconds).length === 1 ? '0' + seconds : seconds)
-          +','+(String(milliseconds).length === 1 ? '00' : String(milliseconds).slice(0,2))}}
-      </p>
-    </div>
-    <p v-else :style="{color: $store.state.TEXT_COLOR}" class="text-gray-300 text-[30px] z-10">{{hours+':'+minutes+':'+seconds}}</p>
+    <div :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_INSET_SHADOWS]" class="w-[240px] h-[240px] absolute rounded-full circle"></div>
+    <p  :style="{color: $store.state.TEXT_COLOR}" class="text-gray-300 text-[30px] z-10">{{hours+':'+minutes+':'+seconds}}</p>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': seconds*6 + milliseconds/1000*6 + 'deg'}">
-      <p v-show="!checked" :style="{rotate: -(seconds*6 + milliseconds/200) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[80px] z-20">Секунды</p>
+      <p :style="{rotate: -(seconds*6 + milliseconds/200) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[80px] z-20">Секунды</p>
     </div>
-    <div v-show="!checked" class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': minutes*6 + seconds/10 + milliseconds/10000 + 'deg'}">
+    <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': minutes*6 + seconds/10 + milliseconds/10000 + 'deg'}">
       <p :style="{rotate: -(minutes*6 + seconds/10 + milliseconds/10000) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[70px] z-10">Минуты</p>
     </div>
-    <div v-show="!checked" class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': hours*30 + minutes/2 + 'deg'}">
+    <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': hours*30 + minutes/2 + 'deg'}">
       <p :style="{rotate: -(hours*30 + minutes/2) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[50px] z-10">Часы</p>
     </div>
-    <div v-show="checked" class="absolute center mr-[20px] mb-[5px]">
-      <div v-for="i in splittings" v-bind:key="i" class="w-[20px] h-[5px] absolute center translate-x-[190px] bg-[dodgerblue]" :style="{rotate: i*30 + 'deg'}"></div>
-    </div>
+
   </div>
 </template>
 
