@@ -1,7 +1,9 @@
 import {createStore} from 'vuex'
+import axios from "axios";
 
 export const store = createStore({
     state: {
+        RESPONSE: '',
         MODE: localStorage.mode,
         SOUND: localStorage.sound,
         BG_COLOR: 'rgba(60,62,65)',
@@ -61,9 +63,16 @@ export const store = createStore({
           }else{
               state.sound = 'sound'
           }
+        },
+        setTime(state, response){
+          state.RESPONSE = response
         }
     },
     actions: {
-
+        async GET_TIME({commit}, zone){
+            await axios.get(`http://worldtimeapi.org/api/timezone/${zone[0]}/${zone[1]}`).then(response=>{
+                commit('setTime', response)
+            })
+        }
     },
 });
