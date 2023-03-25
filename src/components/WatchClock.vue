@@ -5,7 +5,7 @@
     <div :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_INSET_SHADOWS]" class="w-[240px] h-[240px] absolute rounded-full circle"></div>
     <p  :style="{color: $store.state.TEXT_COLOR}" class="text-gray-300 text-[30px] z-10">{{hours+':'+minutes+':'+seconds}}</p>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': seconds*6 + milliseconds/1000*6 + 'deg'}">
-      <p :style="{rotate: -(seconds*6 + milliseconds/200) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[80px] z-20">Секунды</p>
+      <p :style="{rotate: -(seconds*6 + milliseconds/1000*6) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[80px] z-20">Секунды</p>
     </div>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': minutes*6 + seconds/10 + milliseconds/10000 + 'deg'}">
       <p :style="{rotate: -(minutes*6 + seconds/10 + milliseconds/10000) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[70px] z-10">Минуты</p>

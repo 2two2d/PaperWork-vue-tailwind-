@@ -9,12 +9,18 @@
         <img v-show="!play" src="@/assets/icons/img_play.png" alt="img" width="40" height="40">
         <img v-show="play" src="@/assets/icons/img_pause.png" alt="img" width="28" height="28">
       </div>
-      <div :style="$store.state.SMALL_SHADOWS" class="w-[150px] h-[60px] rounded-full btn flex items-center justify-around cursor-pointer">
+      <div @click="setMark" :style="$store.state.SMALL_SHADOWS" class="w-[150px] h-[60px] rounded-full btn flex items-center justify-around cursor-pointer">
         <img src="@/assets/icons/img_timer.svg" alt="img" width="30" height="30" class="filter invert">
       </div>
     </div>
   </div>
-
+  <div v-for="i in marks" :key="key = marks.indexOf(i)" class="w-[500px] h-[40px] flex flex-col justify-between m-[5px]">
+    <hr class="bg-[gray] border-[gray] h-[2px]">
+    <div class="flex justify-between">
+      <p class="text-[dodgerblue] text-[16px]">{{key + 1}}.</p>
+      <p class="text-[dodgerblue] text-[16px]">время - {{i}}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -30,6 +36,7 @@
         seconds: 0,
         minutes: 0,
         interval: 0,
+        marks: [],
       }
     },
     methods: {
@@ -50,13 +57,21 @@
           clearInterval(this.interval)
         }
       },
-
       restart(){
         clearInterval(this.interval)
         this.milliseconds = 0
         this.minutes = 0
         this.seconds = 0
+        this.marks = []
         this.play ? this.play = false : ''
+      },
+      setMark(){
+        let timeMark = `${JSON.parse(JSON.stringify(String(Math.floor(this.minutes)).length === 1 ? '0' + Math.floor(this.minutes) : Math.floor(this.minutes)))}:
+                         ${JSON.parse(JSON.stringify(String(Math.floor(this.seconds)).length === 1 ? '0' + Math.floor(this.seconds) : Math.floor(this.seconds)))}:
+                         ${JSON.parse(JSON.stringify(String(this.milliseconds).slice(0,2)))}`
+        if(timeMark.length === 0 || timeMark != this.marks[this.marks.length-1]){
+          this.marks.push(timeMark)
+        }
       }
     },
     beforeMount(){

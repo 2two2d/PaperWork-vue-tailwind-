@@ -7,15 +7,15 @@
       <p :style="{color: $store.state.TEXT_COLOR}">Выставлено системное время</p>
     </div>
     <div v-else class="h-full flex flex-col justify-around text-white">
-      <p :style="{color: $store.state.TEXT_COLOR}">День недели: <span>{{day_of_week}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">День недели: <span>{{response_text.day_of_week}}</span></p>
       <hr>
-      <p :style="{color: $store.state.TEXT_COLOR}">День года: <span>{{day_of_year}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">День года: <span>{{response_text.day_of_year}}</span></p>
       <hr>
-      <p :style="{color: $store.state.TEXT_COLOR}">Номер недели: <span>{{week_number}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">Номер недели: <span>{{response_text.week_number}}</span></p>
       <hr>
-      <p :style="{color: $store.state.TEXT_COLOR}">UTF: <span>{{utc_offset}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">UTF: <span>{{response_text.utc_offset}}</span></p>
       <hr>
-      <p :style="{color: $store.state.TEXT_COLOR}">Временая зона: <span>{{time_zone}}</span></p>
+      <p :style="{color: $store.state.TEXT_COLOR}">Временая зона: <span>{{response_text.timezone}}</span></p>
     </div>
   </div>
 </template>
@@ -24,25 +24,6 @@
 export default {
   name: "DataBlock",
   props: ['response_text', 'validation_error'],
-  data(){
-    return{
-      day_of_week: '',
-      day_of_year: '',
-      week_number: '',
-      utc_offset: '',
-      time_zone: '',
-    }
-  },
-  watch: {
-    response_text: function (){
-      let raw_data_arr = this.response_text.split(',')
-      this.day_of_week = raw_data_arr[3].split(':')[1]
-      this.day_of_year = raw_data_arr[4].split(':')[1]
-      this.week_number = raw_data_arr[14].split(':')[1].slice(0,-1)
-      this.utc_offset = raw_data_arr[13].split(':')[1].slice(1)
-      this.time_zone = raw_data_arr[10].split(':')[1].slice(1,-1)
-    }
-  }
 }
 </script>
 

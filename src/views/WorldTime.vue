@@ -61,7 +61,6 @@
         hours: '00',
         continent: 'Asia',
         city: localStorage.city,
-        response: '',
         response_data: '',
         interval: '',
       }
@@ -78,37 +77,25 @@
         localStorage.continent = continent
       },
       set_time(){
-        document.getElementById(localStorage.continent).click()
           if(this.city_validator(this.city)) {
-
             this.$store.dispatch('GET_TIME', [this.continent, this.city])
-            console.log(this.$store.state.RESPONSE.data.datatime)
-
-            // let request = new XMLHttpRequest()
-            // request.open('GET', `http://worldtimeapi.org/api/timezone/${this.continent}/${this.city}`, false)
-            // request.send()
-            // if (request.status == '200') {
-            //   let time = new Date(request.responseText.split(',')[2].slice(12, 16),
-            //       request.responseText.split(',')[2].slice(17, 19),
-            //       request.responseText.split(',')[2].slice(20, 22),
-            //       request.responseText.split(',')[2].slice(23, 25),
-            //       request.responseText.split(',')[2].slice(26, 28),
-            //       request.responseText.split(',')[2].slice(29, 31))
-            //   this.response_data = request.responseText
-            //   request.abort()
-            //   this.validation_error = ''
-            //   this.show_time(time)
-            // } else {
-            //   request.abort()
-            //   this.validation_error = 'Такой город не найден!'
-            //   this.response_data = ''
-            //   let time = new Date()
-            //   this.show_time(time)
-            // }
+            let response = this.$store.state.RESPONSE
+            console.log(response)
+            if (response.status ===  200) {
+              let time = new Date(response.data.datetime.slice(0, 19))
+              this.response_data = response.data
+              this.validation_error = ''
+              this.show_time(time)
+            } else {
+              this.validation_error = 'Такой город не найден!'
+              this.response_data = ''
+              let time = new Date()
+              this.show_time(time)
+            }
           }
         },
       set_default(){
-        // location.reload()
+        document.getElementById(localStorage.continent).click()
         let time = new Date()
         clearInterval(this.interval)
         this.response_data = ''
@@ -118,13 +105,13 @@
       show_time(time){
         clearInterval(this.interval)
         this.interval = setInterval(()=>{
-           time.setMilliseconds(time.getMilliseconds()+200)
+           time.setMilliseconds(time.getMilliseconds()+10)
            this.milliseconds = time.getMilliseconds()
            String(time.getSeconds()).length === 1 ? this.seconds = '0' + time.getSeconds() : this.seconds = time.getSeconds()
            String(time.getMinutes()).length === 1 ? this.minutes = '0' + time.getMinutes() : this.minutes = time.getMinutes()
            String(time.getHours()).length === 1 ? this.hours = '0' + time.getHours() : this.hours = time.getHours()
            this.time_text = time
-        }, 200)
+        }, 10)
       },
       city_validator(city){
          if(city.lastIndexOf(' ') !== -1){
