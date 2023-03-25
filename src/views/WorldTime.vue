@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-around h-[600px] mt-[20px]">
+  <div class="flex flex-col items-center justify-around h-[560px] mt-[20px]">
     <div class="w-[700px] h-[120px] flex flex-wrap justify-between">
       <div class="w-[700px] flex justify-between">
         <div>
@@ -119,6 +119,9 @@
            return false
          }else if(city[0] !== city[0].toUpperCase()){
            this.validation_error = 'Название города должно начинаться с большой буквы!'
+           return false
+         }else if(/[0-9]/.test(city)){
+           this.validation_error = 'Название города не может содержать цифры!'
            return false
          }else{
            return true
