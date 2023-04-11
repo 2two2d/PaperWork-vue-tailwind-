@@ -56,28 +56,32 @@ export default {
     },
     startStop(){
       if(this.minutes || this.seconds){
-        this.play = !this.play
-        this.milliseconds = 1000
-        this.seconds -= 1
-        this.interval = setInterval(()=>{
-          this.milliseconds -= 10
-          if(this.milliseconds === 0){
-            if(this.minutes === 0 && this.seconds === 0){
-              clearInterval(this.interval)
-              this.play = !this.play
-              this.timerFinish()
-              return true
-            }
-            if(this.seconds === 0 && this.minutes != 0){
-              this.minutes -= 1
-              this.seconds = 60
+        if(!this.play){
+          this.play = !this.play
+          this.milliseconds = 1000
+          this.seconds -= 1
+          this.interval = setInterval(()=>{
+            this.milliseconds -= 10
+            if(this.milliseconds === 0){
+              if(this.minutes === 0 && this.seconds === 0){
+                clearInterval(this.interval)
+                this.play = !this.play
+                this.timerFinish()
+                return true
+              }
+              if(this.seconds === 0 && this.minutes != 0){
+                this.minutes -= 1
+                this.seconds = 60
+                this.milliseconds = 1000
+              }
               this.milliseconds = 1000
+              this.seconds -= 1
             }
-            this.milliseconds = 1000
-            this.seconds -= 1
-
-          }
-        }, 10)
+          }, 10)
+        }else{
+          this.play = !this.play
+          clearInterval(this.interval)
+        }
       }
     },
     restart(){
