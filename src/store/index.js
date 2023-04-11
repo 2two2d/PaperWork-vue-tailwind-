@@ -7,6 +7,7 @@ export const store = createStore({
         MODE: localStorage.mode,
         SOUND: localStorage.sound,
         BG_COLOR: 'rgba(60,62,65)',
+        BG_TIMER_MARKS: 'dodgerblue',
         BG_UP: 'linear-gradient(145deg, #404246, #36383b)',
         TEXT_COLOR: 'white',
         LINK_COLOR: 'lightgray',

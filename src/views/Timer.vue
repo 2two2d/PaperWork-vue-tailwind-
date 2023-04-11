@@ -65,14 +65,17 @@ export default {
             if(this.minutes === 0 && this.seconds === 0){
               clearInterval(this.interval)
               this.play = !this.play
+              this.timerFinish()
               return true
+            }
+            if(this.seconds === 0 && this.minutes != 0){
+              this.minutes -= 1
+              this.seconds = 60
+              this.milliseconds = 1000
             }
             this.milliseconds = 1000
             this.seconds -= 1
-            if(this.seconds === 0 && this.minutes != 0){
-              this.minutes -= 1
-              this.seconds = 59
-            }
+
           }
         }, 10)
       }
@@ -84,6 +87,12 @@ export default {
       this.seconds = 0
       this.play ? this.play = false : ''
     },
+    timerFinish(){
+      this.$store.state.BG_TIMER_MARKS = 'springgreen'
+      setTimeout(()=>{
+        this.$store.state.BG_TIMER_MARKS = 'dodgerblue'
+      }, 500)
+    }
   },
 }
 </script>
@@ -99,12 +108,18 @@ export default {
     border: 3px solid dodgerblue;
     color: dodgerblue;
   }
-
-
   .btn{
     background: linear-gradient(145deg, #209fff, #1b82e6);
   }
   .btn:hover{
     background: linear-gradient(145deg, #1b82e6, #209aff);
+  }
+  @keyframes finishTimer {
+    from{
+      background-color: lightgreen;
+    }to{
+      background-color: dodgerblue;
+    }
+
   }
 </style>

@@ -11,7 +11,7 @@
     </div>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': seconds*6 + milliseconds/1000*6 + 'deg'}"></div>
     <div class="absolute center mr-[20px] mb-[5px]">
-      <div v-for="i in splittings" v-bind:key="i" class="w-[20px] h-[5px] absolute center translate-x-[190px] bg-[dodgerblue]" :style="{rotate: i*30 + 'deg'}"></div>
+      <div v-for="i in splittings" v-bind:key="i" class="w-[20px] h-[5px] absolute center translate-x-[190px]" :style="[{rotate: i*30 + 'deg'}, {backgroundColor: this.$store.state.BG_TIMER_MARKS}]"></div>
     </div>
   </div>
 </template>
