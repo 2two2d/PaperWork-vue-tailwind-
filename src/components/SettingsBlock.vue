@@ -44,14 +44,12 @@ export default {
       }else{
         localStorage.sound = 'noSound'
       }
-      this.$store.commit('setSound')
     }
   },
   mounted() {
     this.dark = localStorage.mode === 'dark'
     this.sound = localStorage.sound === 'sound'
     this.$store.commit("setMode")
-    this.$store.commit('setSound')
   }
 }
 </script>

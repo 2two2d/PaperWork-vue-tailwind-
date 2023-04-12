@@ -9,6 +9,7 @@ const routes = [
     {path: '/worldtime', component: WorldTime, name: 'worldtime'},
     {path: '/stopwatch', component: StopWatch, name: 'stopwatch'},
     {path: '/timer', component: ClockTimer, name: 'timer'},
+    {path: '/assets', }
 ]
 
 const ROUTER = createRouter({

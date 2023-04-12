@@ -25,7 +25,7 @@
       </div>
     </div>
   </div>
-
+  <audio id="stopwatchSound" loop><source src="@/assets/sounds/stopwatch_sound.mp3" type="audio/mp3"></audio>
 </template>
 
 <script>
@@ -47,6 +47,7 @@
     methods: {
       startStop(){
         if(this.play === true){
+          this.soundPlay('stopwatchSound')
           this.interval = setInterval(()=>{
             this.milliseconds += 10
             if(this.milliseconds === 1000){
@@ -59,10 +60,12 @@
             }
           }, 10)
         }else{
+          this.soundStop('stopwatchSound')
           clearInterval(this.interval)
         }
       },
       restart(){
+        this.soundStop('stopwatchSound')
         clearInterval(this.interval)
         this.milliseconds = 0
         this.minutes = 0
@@ -77,6 +80,15 @@
         if(timeMark.length === 0 || timeMark !== this.marks[this.marks.length-1]){
           this.marks.push(timeMark)
         }
+      },
+      soundPlay(tagId){
+        if(localStorage.sound === 'sound'){
+          document.getElementById(tagId).play()
+        }
+      },
+
+      soundStop(tagId){
+        document.getElementById(tagId).pause()
       }
     },
     beforeMount(){

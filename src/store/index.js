@@ -5,7 +5,7 @@ export const store = createStore({
     state: {
         RESPONSE: '',
         MODE: localStorage.mode,
-        SOUND: localStorage.sound,
+        SOUND: '',
         BG_COLOR: 'rgba(60,62,65)',
         BG_TIMER_MARKS: 'dodgerblue',
         BG_UP: 'linear-gradient(145deg, #404246, #36383b)',
@@ -74,6 +74,9 @@ export const store = createStore({
             await axios.get(`http://worldtimeapi.org/api/timezone/${zone[0]}/${zone[1]}`).then(response=>{
                 commit('setTime', response)
             })
+        },
+        SET_SOUND(){
+            this.commit('setSound')
         }
     },
 });

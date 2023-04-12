@@ -21,6 +21,8 @@
         </div>
       </div>
     </div>
+    <audio id="timerFinishSound" volume="0.3"><source src="@/assets/sounds/timer_finish_sound.mp3" type="audio/mp3"></audio>
+    <audio id="timerSound" loop volume="0.2"><source src="@/assets/sounds/timer_sound.mp3" type="audio/mp3"></audio>
   </div>
 </template>
 
@@ -57,9 +59,12 @@ export default {
     startStop(){
       if(this.minutes || this.seconds){
         if(!this.play){
+          this.soundPlay('timerSound')
           this.play = !this.play
-          this.milliseconds = 1000
-          this.seconds -= 1
+          if(this.milliseconds === 0){
+            this.milliseconds = 1000
+            this.seconds -= 1
+          }
           this.interval = setInterval(()=>{
             this.milliseconds -= 10
             if(this.milliseconds === 0){
@@ -79,23 +84,39 @@ export default {
             }
           }, 10)
         }else{
+          this.soundStop('timerSound')
           this.play = !this.play
           clearInterval(this.interval)
         }
       }
     },
+
     restart(){
+      document.getElementById('timerSound').pause()
       clearInterval(this.interval)
       this.milliseconds = 0
       this.minutes = 0
       this.seconds = 0
       this.play ? this.play = false : ''
     },
+
     timerFinish(){
       this.$store.state.BG_TIMER_MARKS = 'springgreen'
+      this.soundStop('timerSound')
+      this.soundPlay('timerFinishSound')
       setTimeout(()=>{
         this.$store.state.BG_TIMER_MARKS = 'dodgerblue'
       }, 500)
+    },
+
+    soundPlay(tagId){
+      if(localStorage.sound === 'sound'){
+        document.getElementById(tagId).play()
+      }
+    },
+
+    soundStop(tagId){
+      document.getElementById(tagId).pause()
     }
   },
 }
