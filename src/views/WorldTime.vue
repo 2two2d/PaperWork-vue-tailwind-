@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col items-center justify-around h-[560px] mt-[20px]">
+  <div class="flex flex-col items-center justify-around mt-[20px]">
     <div class="w-[700px] h-[120px] flex flex-wrap justify-between">
-      <div class="w-[700px] flex justify-between">
+      <div class="w-[700px] flex justify-between mt-[20px]">
         <div>
           <input type="radio" id="Asia" name="radio" class="peer hidden" value="Asia" checked v-model="continent">
           <label @click="set_continent_in_storage('Asia')" for="Asia" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Азия</label>

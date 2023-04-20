@@ -64,6 +64,10 @@ export default {
           if(this.milliseconds === 0){
             this.milliseconds = 1000
             this.seconds -= 1
+            if(this.minutes === 1){
+              this.minutes -= 1
+              this.seconds = 59
+            }
           }
           this.interval = setInterval(()=>{
             this.milliseconds -= 10
