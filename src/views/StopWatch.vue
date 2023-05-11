@@ -95,11 +95,15 @@
       this.milliseconds = Number(localStorage.milliseconds)
       this.seconds = Number(localStorage.seconds)
       this.minutes = Number(localStorage.minutes)
+      if(localStorage.marks){
+        this.marks = JSON.parse(localStorage.marks)
+      }
     },
     beforeUnmount() {
       localStorage.milliseconds = this.milliseconds
       localStorage.seconds = this.seconds
       localStorage.minutes = this.minutes
+      localStorage.marks = JSON.stringify(this.marks)
     }
   }
 </script>

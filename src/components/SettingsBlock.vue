@@ -43,6 +43,9 @@ export default {
         localStorage.sound = 'sound'
       }else{
         localStorage.sound = 'noSound'
+        document.getElementsByName('audio').forEach((el)=>{
+          el.pause()
+        })
       }
     }
   },
