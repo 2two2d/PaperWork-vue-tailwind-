@@ -3,7 +3,8 @@
     <div :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_INSET_SHADOWS]" class="w-[360px] h-[360px] absolute rounded-full circle"></div>
     <div :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_INSET_SHADOWS]" class="w-[300px] h-[300px] absolute rounded-full circle"></div>
     <div :style="[{backgroundColor: $store.state.BG_COLOR}, $store.state.BIG_INSET_SHADOWS]" class="w-[240px] h-[240px] absolute rounded-full circle"></div>
-    <p  :style="{color: $store.state.TEXT_COLOR}" class="text-gray-300 text-[30px] z-10">{{hours+':'+minutes+':'+seconds}}</p>
+    <p :style="{color: $store.state.TEXT_COLOR}" class="text-gray-300 text-[30px] z-10">{{hours+':'+minutes+':'+seconds}}</p>
+    <p :style="{color: $store.state.TEXT_COLOR}" class="text-gray-300 text-[30px] z-10 block">{{(hours > 7 && hours < 21) ? '☀':'🌒'}}</p>
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': seconds*6 + milliseconds/1000*6 + 'deg'}">
       <p :style="{rotate: -(seconds*6 + milliseconds/1000*6) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[80px] z-20">Секунды</p>
     </div>
