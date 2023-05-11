@@ -4,32 +4,34 @@
       <div class="w-[700px] flex justify-between mt-[20px]">
         <div>
           <input type="radio" id="Asia" name="radio" class="peer hidden" value="Asia" checked v-model="continent">
-          <label @click="set_continent_in_storage('Asia')" for="Asia" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Азия</label>
+          <label @click="set_continent_in_storage('Asia'); get_cities('Asia')" for="Asia" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Азия</label>
         </div>
         <div>
           <input type="radio" id="Europe" name="radio" class="peer hidden" value="Europe" v-model="continent">
-          <label @click="set_continent_in_storage('Europe')" for="Europe" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Европа</label>
+          <label @click="set_continent_in_storage('Europe'); get_cities('Europe')" for="Europe" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Европа</label>
         </div>
         <div>
-          <input type="radio" id="South_America" name="radio" class="peer hidden" value="South_America" v-model="continent">
-          <label @click="set_continent_in_storage('South_America')" for="South_America" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Южная Америка</label>
-        </div>
-        <div>
-          <input type="radio" id="North_America" name="radio" class="peer hidden" value="North_America" v-model="continent">
-          <label @click="set_continent_in_storage('North_America')" for="North_America" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Северная Америка</label>
+          <input type="radio" id="America" name="radio" class="peer hidden" value="America" v-model="continent">
+          <label @click="set_continent_in_storage('America'); get_cities('America')" for="America" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Америка</label>
         </div>
         <div>
           <input type="radio" id="Australia" name="radio" class="peer hidden" value="Australia" v-model="continent">
-          <label @click="set_continent_in_storage('Australia')" for="Australia" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Австралия</label>
+          <label @click="set_continent_in_storage('Australia'); get_cities('Australia')" for="Australia" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Австралия</label>
         </div>
         <div>
           <input type="radio" id="Africa" name="radio" class="peer hidden" value="Africa" v-model="continent">
-          <label @click="set_continent_in_storage('Africa')" for="Africa" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Африка</label>
+          <label @click="set_continent_in_storage('Africa'); get_cities('Africa')" for="Africa" class="text-gray-500 hover:text-white peer-checked:text-[dodgerblue] peer-checked:text-xl peer-checked:block peer-checked:mt-[-5px] hover:cursor-pointer transition">Африка</label>
         </div>
       </div>
       <div class="w-[200px]">
         <img src="@/assets/icons/img_search.png" alt="img" width="22" height="22" class="absolute ml-[170px] mt-[3px] invert-[0.8] hover:cursor-pointer" id="search_img">
-        <input v-model="city" v-on:keydown.enter="set_time" type="text" :style="{backgroundColor: $store.state.BG_COLOR}" class="w-[200px] h-[30px] rounded-full border-2 border-gray-400 outline-0 text-[dodgerblue] text-center focus:placeholder-[dodgerblue]" id="search_input" placeholder="Город">
+        <input v-model="city" v-on:keydown.enter="set_time" type="text" :style="{backgroundColor: $store.state.BG_COLOR}" autocomplete="off" class="w-[200px] h-[30px] rounded-full border-2 border-gray-400 outline-0 text-[dodgerblue] text-center focus:placeholder-[dodgerblue]" id="search_input" placeholder="Город">
+        <div v-if="properCities && city" class="absolute mt-[10px] flex flex-wrap w-[200px] max-h-[80px] overflow-y-scroll overflow-x-hidden bg-[dodgerblue] rounded-l p-[5px]">
+          <div v-for="city in properCities" :key="city" @click="this.city=city;set_time()" class="w-[200px] h-[12px] flex justify-between mb-[8px] cursor-pointer">
+            <p class="text-[white]">{{city}}</p>
+            <p class="text-[white]">{{this.continent}}</p>
+          </div>
+        </div>
       </div>
       <div @click="set_time" :style="$store.state.SMALL_SHADOWS" class="btn w-[200px] h-[30px] rounded-full pt-0.5 bg-[dodgerblue] hover:cursor-pointer">
         <p class="text-center text-white select-none">Установить регион</p>
@@ -41,6 +43,12 @@
     <div class="flex h-[400px] w-[700px] justify-between">
       <data-block v-bind:response_text="response_data" v-bind:validation_error="validation_error"></data-block>
       <watch-clock v-bind:milliseconds="milliseconds" v-bind:seconds="seconds" v-bind:minutes="minutes" v-bind:hours="hours"></watch-clock>
+    </div>
+    <div class="w-[700px] mt-[50px] mb-[200px]">
+      <p :style="{color: $store.state.TEXT_COLOR}" class="text-[22px]">Города выбранного континента</p>
+      <div class="w-[700px] flex flex-wrap justify-between mt-[20px]">
+        <p v-for="city in $store.state.CITIES_SET" :key="city" @click="this.city=city; set_time()" class="text-[dodgerblue] m-[6px] mr-[10px] ml-[10px] cursor-pointer">{{city}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -70,8 +78,8 @@
     },
     mounted() {
       this.set_default()
+      this.get_cities(this.continent)
     },
-
     methods: {
       set_continent_in_storage(continent){
         localStorage.continent = continent
@@ -126,7 +134,21 @@
          }else{
            return true
          }
+      },
+      get_cities(zone){
+        this.city = ''
+        this.$store.dispatch('GET_CITIES', zone)
       }
+    },
+    computed: {
+      properCities(){
+        if(this.$store.state.CITIES_SET && !this.$store.state.CITIES_SET.includes(this.city) && this.city){
+          return this.$store.state.CITIES_SET.filter((city)=>{
+            return city.toLowerCase().startsWith(this.city.toLowerCase())
+          })
+        }
+        return false
+      },
     },
     beforeUnmount(){
       localStorage.continent = this.continent

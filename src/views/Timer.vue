@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-between w-[700px] h-[900px] m-[40px]">
+  <div class="flex flex-col items-center justify-between w-[700px] h-[825px] m-[40px]">
     <timer-clock :minutes="minutes" :seconds="seconds" :milliseconds="milliseconds"></timer-clock>
     <div class="w-[400px] h-[400px] flex justify-between">
       <div class="flex justify-between items-center w-[140px] h-[60px]">

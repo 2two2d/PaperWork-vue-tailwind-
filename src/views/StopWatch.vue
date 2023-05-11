@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-start justify-between w-[700px] m-[40px]">
+  <div class="flex items-start justify-between w-[700px] m-[40px] h-[825px]">
     <stopwatch-clock v-bind:milliseconds="milliseconds" v-bind:seconds="Math.floor(seconds)" v-bind:minutes="Math.floor(minutes)" v-bind:checked="true"></stopwatch-clock>
     <div class="flex flex-col">
       <div class="w-[240px] h-[50px] flex justify-between">

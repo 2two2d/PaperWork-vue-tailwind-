@@ -1,5 +1,5 @@
 <template>
-  <div :style="{backgroundColor: this.$store.state.BG_COLOR}" id="main" class="flex flex-col items-center w-full h-[100vh]">
+  <div :style="{backgroundColor: this.$store.state.BG_COLOR}" id="main" class="flex flex-col items-center w-full">
     <HeaderNav/>
     <router-view></router-view>
   </div>

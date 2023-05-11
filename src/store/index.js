@@ -6,6 +6,7 @@ export const store = createStore({
         RESPONSE: '',
         MODE: localStorage.mode,
         SOUND: '',
+        CITIES_SET: '',
         BG_COLOR: 'rgba(60,62,65)',
         BG_TIMER_MARKS: 'dodgerblue',
         BG_UP: 'linear-gradient(145deg, #404246, #36383b)',
@@ -65,6 +66,11 @@ export const store = createStore({
               state.sound = 'sound'
           }
         },
+        setCities(state, response){
+          state.CITIES_SET = response.data.map((city)=>{
+              return city.split('/').slice(1,3).join('/')
+          })
+        },
         setTime(state, response){
           state.RESPONSE = response
         }
@@ -73,6 +79,11 @@ export const store = createStore({
         async GET_TIME({commit}, zone){
             await axios.get(`http://worldtimeapi.org/api/timezone/${zone[0]}/${zone[1]}`).then(response=>{
                 commit('setTime', response)
+            })
+        },
+        async GET_CITIES({commit}, zone){
+            await  axios.get(`http://worldtimeapi.org/api/timezone/${zone}/`).then(response=>{
+                commit('setCities', response)
             })
         },
         SET_SOUND(){
