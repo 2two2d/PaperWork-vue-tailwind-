@@ -26,10 +26,9 @@
       <div class="w-[200px]">
         <img src="@/assets/icons/img_search.png" alt="img" width="22" height="22" class="absolute ml-[170px] mt-[3px] invert-[0.8] hover:cursor-pointer" id="search_img">
         <input v-model="city" v-on:keydown.enter="set_time" type="text" :style="{backgroundColor: $store.state.BG_COLOR}" autocomplete="off" class="w-[200px] h-[30px] rounded-full border-2 border-gray-400 outline-0 text-[dodgerblue] text-center focus:placeholder-[dodgerblue]" id="search_input" placeholder="Город">
-        <div v-if="properCities && city" class="absolute mt-[10px] flex flex-wrap w-[200px] max-h-[80px] overflow-y-scroll overflow-x-hidden bg-[dodgerblue] rounded-l p-[5px]">
-          <div v-for="city in properCities" :key="city" @click="this.city=city; set_time()" class="w-[200px] h-[12px] flex justify-between mb-[8px] cursor-pointer">
-            <p class="text-[white]">{{city}}</p>
-            <p class="text-[white]">{{this.continent}}</p>
+        <div v-if="properCities.length" class="absolute mt-[10px] flex flex-wrap w-[200px] max-h-[80px] overflow-y-scroll overflow-x-hidden bg-[dodgerblue] rounded-l p-[5px] custom-scroll">
+          <div v-for="city in properCities" :key="city" @click="this.city=city; set_time()" class="w-[200px] h-[12px] flex justify-between mb-[8px] cursor-pointer group">
+            <p class="text-[white] group-hover:text-[18px]">{{this.continent}} - {{city}}</p>
           </div>
         </div>
       </div>

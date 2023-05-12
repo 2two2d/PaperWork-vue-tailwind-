@@ -14,7 +14,6 @@
     <div class="absolute w-[30px] h-[30px] rounded-full pointer" :style="{'rotate': hours*30 + minutes/2 + 'deg'}">
       <p :style="{rotate: -(hours*30 + minutes/2) + 'deg', color: $store.state.TEXT_COLOR}" class="text-gray-200 transform -translate-x-[50px] z-10">Часы</p>
     </div>
-
   </div>
 </template>
 
