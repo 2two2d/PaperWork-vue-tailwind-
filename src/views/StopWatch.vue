@@ -92,9 +92,9 @@
       }
     },
     beforeMount(){
-      localStorage.stopwatchMilliseconds ? this.milliseconds = localStorage.stopwatchMilliseconds : this.milliseconds = 0
-      localStorage.stopwatchSeconds ? this.seconds = localStorage.stopwatchSeconds : this.seconds = 0
-      localStorage.stopwatchMinutes ? this.minutes = localStorage.stopwatchMinutes : this.minutes = 0
+      localStorage.stopwatchMilliseconds ? this.milliseconds = Number(localStorage.stopwatchMilliseconds) : this.milliseconds = 0
+      localStorage.stopwatchSeconds ? this.seconds = Number(localStorage.stopwatchSeconds) : this.seconds = 0
+      localStorage.stopwatchMinutes ? this.minutes = Number(localStorage.stopwatchMinutes) : this.minutes = 0
       if(localStorage.marks){
         this.marks = JSON.parse(localStorage.marks)
       }

@@ -124,9 +124,9 @@ export default {
     }
   },
   beforeMount() {
-    localStorage.timerMinutes ? this.minutes = localStorage.timerMinutes : this.minutes = 0
-    localStorage.timerSeconds ? this.seconds = localStorage.timerSeconds: this.seconds = 0
-    localStorage.timerMilliseconds ? this.milliseconds = localStorage.timerMilliseconds: this.milliseconds = 0
+    localStorage.timerMinutes ? this.minutes = Number(localStorage.timerMinutes) : this.minutes = 0
+    localStorage.timerSeconds ? this.seconds = Number(localStorage.timerSeconds): this.seconds = 0
+    localStorage.timerMilliseconds ? this.milliseconds = Number(localStorage.timerMilliseconds): this.milliseconds = 0
   },
   beforeUnmount() {
     localStorage.timerMinutes = this.minutes
