@@ -4,11 +4,11 @@
     <div class="w-[400px] h-[400px] flex justify-between">
       <div class="flex justify-between items-center w-[140px] h-[60px]">
         <div class="flex flex-col items-center">
-          <input :style="[{backgroundColor: $store.state.BG_COLOR}, {color: $store.state.TEXT_COLOR}]" @wheel="setMinutes" v-model="minutes" type="number" readonly>
+          <input :style="[{backgroundColor: $store.state.BG_COLOR}, {color: $store.state.TEXT_COLOR}]" @wheel="setMinutes" v-model="minutes" type="number" max="59" min="0" onkeypress="return false">
         </div>
         <p :style="{color: $store.state.TEXT_COLOR}">:</p>
         <div class="flex flex-col items-center">
-          <input :style="[{backgroundColor: $store.state.BG_COLOR}, {color: $store.state.TEXT_COLOR}]"  @wheel="setSeconds" v-model="seconds" type="number" readonly>
+          <input :style="[{backgroundColor: $store.state.BG_COLOR}, {color: $store.state.TEXT_COLOR}]"  @wheel="setSeconds" v-model="seconds" type="number" max="59" min="0" onkeypress="return false">
         </div>
       </div>
       <div class="flex justify-between w-[140px]">
